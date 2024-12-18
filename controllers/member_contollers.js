@@ -19,7 +19,7 @@ const isAdmin = async (req, res, next) => {
 };
 
 // Create a new staff account (Admin only)
-router.post("/create", async (req, res) => {
+router.post("/create", authenticate, isAdmin, async (req, res) => {
   try {
     const { name, email, role, position, phone } = req.body;
     // console.log(email);
@@ -116,7 +116,7 @@ router.get("/staff/list", authenticate, isAdmin, async (req, res) => {
   }
 });
 // Suspend or delete a staff account (Admin only)
-router.put("/suspend/:id", isAdmin, async (req, res) => {
+router.put("/suspend/:id", authenticate, isAdmin, async (req, res) => {
   try {
     const { id } = req.params;
     const { isSuspended } = req.body;
@@ -303,7 +303,7 @@ router.post("/add", authenticate, async (req, res) => {
 });
 
 // Get all members
-router.get("/list", async (req, res) => {
+router.get("/list", authenticate, async (req, res) => {
   try {
     const members = await Member.find();
     res.status(200).json(members);
@@ -313,7 +313,7 @@ router.get("/list", async (req, res) => {
 });
 
 // Update a member
-router.put("/update/:id", async (req, res) => {
+router.put("/update/:id", authenticate, isAdmin, async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -363,7 +363,7 @@ router.put("/update/:id", async (req, res) => {
 });
 
 // Delete a member
-router.delete("/deletemember/:id", async (req, res) => {
+router.delete("/deletemember/:id", authenticate, isAdmin, async (req, res) => {
   try {
     const { id } = req.params;
     console.log(id);

@@ -61,7 +61,7 @@ const sendBirthdayAlerts = async () => {
       .join("");
 
     const emailBody = `
-      <p>Hello Admins,</p>
+      <p>Hello DLWC Admin,</p>
       <p>This is a reminder that tomorrow is the birthday of the following member(s):</p>
 
       <table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif;">
@@ -78,7 +78,7 @@ const sendBirthdayAlerts = async () => {
       </table>
 
       <p>Best regards,</p>
-      <p>Your Team</p>
+      <p>Apex Dev</p>
     `;
 
     // Send email to all admins
