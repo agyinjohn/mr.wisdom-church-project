@@ -21,7 +21,7 @@ const isAdmin = async (req, res, next) => {
 // Create a new staff account (Admin only)
 router.post("/create", authenticate, isAdmin, async (req, res) => {
   try {
-    const { name, email, role, position, phone } = req.body;
+    const { name, email, role, phone } = req.body;
     // console.log(email);
     // Generate a random password
     const password = crypto.randomBytes(8).toString("hex");
@@ -38,7 +38,6 @@ router.post("/create", authenticate, isAdmin, async (req, res) => {
       email,
       role,
       phone,
-      position,
       password: hashedPassword,
     });
     await newStaff.save();
